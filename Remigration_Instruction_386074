@@ -1,0 +1,66 @@
+Special Instructions
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD - R3 Cycle Testing Environment
+STEP 1: Please turn off the channel in Event notifier "InvoiceCollectionSap_c1"; Once the migration is completed, enable back with confirmation from DEV team.
+STEP 2: Please enable security properties loader for topology sapsvc_2031 and webmet_2050(To be done by Platform Team )
+STEP 3 :Please copy the secure keystore in sapsvc_2031 and webmet_2050 instances (To be done Platform Team )
+STEP 4: DB property migration
+STEP 5: invoice-producer-sap.war and invoice-consumer-wm.war to be migrated
+Step 6: Touch base with DEV team for Tuning on the channel "InvoiceCollectionSap_c1" 
+			after the completion of migration
+
+Remigration Instructions
+STEP 1: Please turn off the channel in Event notifier "InvoiceCollectionSap_c1"; Once the migration is completed, enable back with confirmation from DEV team.
+Environment : PROD
+------------------------------------------------------------
+STEP 2:
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD 
+Topology : sapsvc_2031 and webmet_2050
+Enable security properties loader for the above instances
+----------------------------------------------------------------------------
+STEP 3
+SECURE KEYSTORE COPY : (To be done by Platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in sapsvc_2031 and webmet_2050 instances  
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : invoice-producer-sap-R3
+Version : 1,2,3,4
+---------------------------------------------------------------------------------
+STEP 4:
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : invoice-distribution-R3 
+Version : 1,2,3,4
+-----------------------------------------------------------------------------------
+STEP 5 :
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name: invoice-producer-sap 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective 
+------------------------------------------------------------ 
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name: invoice-consumer-wm 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective
+--------------------------------------------------------------
+Step 6: 
+Touch base with DEV team for Tuning on the channel "InvoiceCollectionSap_c1" 
+			after the completion of migration
+Environment : PROD

@@ -1,0 +1,86 @@
+Special Instructions
+
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+STEP 1 - Please enable security properties loader for topology (orasfdcws_3701) (To be done by Platform Team)
+STEP 2 : Please copy the secure keystore in orasfdcws_3701 instances (To be done by Platform Team)
+STEP 3 - oracle11i DB JNDI (To be done by Platform Team)
+STEP 4 - Properties Migration
+STEP 5 - Event Notifier Creation DBScript Migration
+STEP 6 : Gemfire refresh
+STEP 7 - Component Deployment - opportunity-p2p-rqf-federalsfdc.war to be migrated
+
+Migration Instructions 
+------------------------------------------------------------
+STEP 1:
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team)
+Environment: PROD
+Topology : 	orasfdcws_3701
+Enable security properties loader for the above instance
+------------------------------------------------------------
+STEP 2:
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in orasfdcws_3701 instances 
+---------------------------------------------------------------
+STEP 3:
+oracle11i DB JNDI SETUP: (To be done by Platform Team )
+Environment : PROD
+Topology : 	orasfdcws_3701
+jndi : jdbc/oracle11i need to be configured. Please make sure that this JNDI is set in this instance. Platform team can check this. 
+-----------------------------------------------------
+STEP 4:
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shared-ora11i-db-config
+Version: 1
+-----------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shared-federal-sfdc-login
+Version: 1
+---------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : opportunity-p2p-rqf-federalsfdc
+Version: 1,2
+-----------------------------------------------------
+Step 1: DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : opportunity-p2p-rqf-federalsfdc-r3
+Version: 1,2
+-----------------------------------------------------
+STEP 5:
+Event Notifier Creation: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : OpptP2PRqfOra11iFedSFDC_c
+Version: 1,2,3
+PLATFORM TEAM TASK : OpptP2PRqfOra11iFedSFDC_c channel has to be business critical, but keep in turned off
+-----------------------------------------------------
+Step 6: Gemfire refresh
+Scehma: CICTRANS
+Environment : PROD
+A new row is inserted in CIC_EMAIL_NTF table schema.
+GemFire : EMAIL_NOTIFICATION 
+Please refresh and confirm that newly inserted record avialable in table.
+Record :  opportunity-p2p-rqf-federalsfdc as a key for both the tables
+-----------------------------------------------------
+STEP 7: COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name : opportunity-p2p-rqf-federalsfdc
+Snap-shot : 3-SNAPSHOT 
+Project :   es
+Migration type : warselective
+-------------------------------------------------------

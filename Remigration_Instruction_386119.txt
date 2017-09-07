@@ -1,0 +1,72 @@
+Special Instructions
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+STEP1: Please turn off the channel in Event notifier "SalesOrderCollectionSAP_c1"; Once the migration and conversion are completed, enable back with confirmation from DEV team.
+STEP2: Please enable security properties loader for topology sapsvc_2030,orasys_2021,websvc_2055 (To be done by Platform Team)
+STEP3: Please copy the secure keystore in sapsvc_2030,orasys_2021,websvc_2055 instance (To be done by Platform Team)
+STEP4: Properties Migration
+STEP5: salesorder-producer-sap.war,salesorder-consumer-oracle11i.war and salesorder-oracle11i-webservice.war to be migrated
+STEP6: Actional Refresh
+STEP7: Touch base with DEV team for Tuning on the channel "SalesOrderCollectionSAP_c1" 
+ after the completion of migration
+
+Remigration Instructions
+
+Migration Instructions 
+
+STEP 1: Please turn off the channel in Event notifier "SalesOrderCollectionSAP_c1"; 
+Once the migration and conversion are completed, enable back with confirmation from DEV team.
+Environment : PROD
+------------------------------------------------------------
+STEP 2: SECURE PROPERTY LOADER SETUP: (To be done by Platform Team)
+Environment: PROD
+Topology : sapsvc_2030,orasys_2021,websvc_2055
+Enable security properties loader for the above instance
+------------------------------------------------------------
+STEP3: SECURE KEYSTORE COPY : (To be done by Platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in sapsvc_2030 instance
+------------------------------------------------------------
+STEP4:  DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : salesorder-producer-sap-R3
+Version: 1,2,3
+----------------------------------------------------------------
+STEP5: COMPONENT DEPLOYMENT: 
+Source Environment: PRF
+Target Environment: PROD
+Component Name :  salesorder-producer-sap
+Snapshot :	3-SNAPSHOT                                
+Project  :   rel1
+Migration type :  warselective
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Source Environment: PRF
+Target Environment: PROD
+Component Name :  salesorder-consumer-oracle11i 
+Snapshot :	3-SNAPSHOT                                
+Project  :  rel1
+Migration type :  warselective
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Source Environment: PRF
+Target Environment: PROD
+Component Name :  salesorder-oracle11i-webservice 
+Snapshot :	3-SNAPSHOT                                
+Project  :  rel1
+Migration type :  warselective
+
+-----------------------------------------------------------
+STEP6: ACTIONAL REFRESH
+Actional Creation/Refresh: Refresh
+Environment: PROD
+Application contract: cicuser
+Internal/External : Internal 
+             
+User Creation details: Please Refresh actional URL
+--------------------------------------------------------------
+STEP7: Touch base with DEV team for Tuning on the channel "SalesOrderCollectionSAP_c1" 
+ after the completion of migration

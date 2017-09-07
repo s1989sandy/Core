@@ -1,0 +1,52 @@
+Special Instructions:
+-------------------------------------------------------------
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD
+STEP 1 : Please enable security properties loader for topology fsfdcsvc_3100  To be done by Platform Team )
+STEP 2 : Please copy the secure keystore in fsfdcsvc_3100 instance (To be done by Platform Team)
+STEP 3 : Properties Migration
+STEP 4 : please bind the Queue (AIC.D.QUOTE.FEDERALSFDC.Q)with Exchange (AIC.D.QUOTE.FO.EXG)
+STEP 5 : Gemfire Refresh
+STEP 6 : Component Deployment - quote-consumer-federalsfdc.war
+
+
+Migration Instructions
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done Middleware Team )
+Environment: PROD 
+Topology : fsfdcsvc_3100
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in fsfdcsvc_3100 instance
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : quote-consumer-federalsfdc
+Version: 1,2,3
+------------------------------------------------------------
+QUEUE BINDING: please bind the Queue with Exchange
+Environment : PROD
+Queue Name: AIC.D.QUOTE.FEDERALSFDC.Q
+Exchange Name: AIC.D.QUOTE.FO.EXG
+------------------------------------------------------------
+Gemfire refresh
+Scehma: CICTRANS
+Environment : PROD
+A new row is inserted in CIC_EMAIL_NTF table schema.
+GemFire : EMAIL_NOTIFICATION 
+Please refresh and confirm that newly inserted record avialable in table.
+Record :  quote-consumer-federalsfdc as a key for both the tables
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name: quote-consumer-federalsfdc
+Snap-shot: 3-SNAPSHOT               
+Project : rel3
+Migration type : warselective
+------------------------------------------------------------

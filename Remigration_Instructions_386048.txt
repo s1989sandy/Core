@@ -1,0 +1,61 @@
+Please deploy the components as Remigration Instructions:
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment
+
+STEP 1: Please turn off the channel in Event notifier "QuoteCollectionCrm_c"; Once the migration and conversion are completed, enable back with confirmation from DEV team.
+STEP 2: Please enable security properties loader for topology ( dissvc_3032 ) (To be done Middleware Team )
+STEP 3 :Please copy the secure keystore in dissvc_3032  instances (To be done Middleware Team )
+STEP 4: Properties Migration
+STEP 5: Please bind the Queue(AIC.D.QUOTE.PAYMENTINBOX.Q) with Exchange (AIC.D.QUOTE.FO.EXG)
+STEP 6: quote-producer-crm.war and quote-consumer-paymentinbox.war to be migrated
+STEP 7: Gemfire refresh
+STEP 8: Touch base with DEV team for Tuning on the channel "QuoteCollectionCrm_c" after the completion of migration 
+
+Migration Instructions 
+
+-----------------------------------------------------------
+STEP 1: Please turn off the channel in Event notifier "QuoteCollectionCrm_c"; Once the migration and conversion are completed, enable back with confirmation from DEV team.
+------------------------------------------------------------
+STEP 2: SECURE PROPERTY LOADER SETUP: (To be done Middleware Team )
+Environment: PROD 
+Topology : dissvc_3032  
+Enable security properties loader for the above instance
+--------------------------------------------------------------------------------
+STEP 3: SECURE KEYSTORE COPY : (To be done by Middleware Team)
+Environment:PROD
+Please copy the encryptprops.keystore in dissvc_3032 instances  
+------------------------------------------------------------
+STEP 4: 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : quote-consumer-paymentinbox
+Version:1,2,3,4
+--------------------------------------------------------------------------------
+STEP 5:QUEUE BINDING
+Environment : PROD 
+Queue Name: AIC.D.QUOTE.PAYMENTINBOX.Q
+Exchange Name :AIC.D.QUOTE.FO.EXG
+
+-------------------------------------------------------------------------------
+STEP 6: 
+COMPONENT DEPLOYMENT: 
+Components Migration(WAR): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Deployment Type : Deployment 
+Component Name : quote-consumer-paymentinbox
+Snapshot :	3-SNAPSHOT                                
+Project:  rel3
+Migration type : warselective
+--------------------------------------------------------------------------------
+STEP 7:
+Gemfire refresh
+Scehma: CICTRANS
+A new row is inserted in CIC_EMAIL_NTF table schema.
+GemFire : EMAIL_NOTIFICATION 
+Please refresh and confirm that newly inserted record is available in the table. 
+Record :  quote-consumer-paymentinbox as a key for the table
+--------------------------------------------------------------------------------
+STEP 8: Touch base with DEV team for Tuning on the channel "QuoteCollectionCrm_c" after the completion of migration 
+--------------------------------------------------------------------------------

@@ -1,0 +1,71 @@
+Special Instructions
+
+Note: Component migration is from PRF to PROD 
+STEP1: Please turn off the channel in Event notifier "ShipmentCollectionSap_c1"; Once the migration and conversion are completed, enable back with confirmation from DEV team.
+STEP2: Please enable security properties loader for topology sapsvc_2030 and  webmet_2052(To be done by Platform Team )
+STEP3: Please copy the secure keystore in sapsvc_2030 and  webmet_2052 instances (To be done by Platform Team )
+STEP4: DB property migration
+STEP5: shipment-producer-sap.war , shipment-consumer-wm.war and shipment-webservice-sap.war to be migrated
+Step6: Touch base with DEV team for Tuning on the channel "ShipmentCollectionSap_c1" 
+		after the completion of migration 
+
+
+Remigration Instructions 
+----------------------------------------------------------------------------
+Step 1 :
+Please turn off the channel in Event notifier "ShipmentCollectionSap_c1"; Once the migration and conversion are completed, enable back with confirmation from DEV team.
+
+----------------------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD
+Topology : sapsvc_2030, webmet_2052
+Enable security properties loader for the above instance
+----------------------------------------------------------------------------
+STEP2: SECURE KEYSTORE COPY : (To be done by Platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in sapsvc_2030 and  webmet_2052 instances  
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shipment-producer-sap-R3
+Version : 1,2,3
+----------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shipment-distribution-R3 
+Version : 1 , 2 , 3, 4, 5 , 6, 7, 8, 9
+-----------------------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD
+Component Name: shipment-producer-sap 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective 
+------------------------------------------------------------ 
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD
+Component Name: shipment-consumer-wm 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective
+-----------------------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD
+Component Name: shipment-webservice-sap
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective 
+------------------------------------------------------------ 
+Step6: Touch base with DEV team for Tuning on the channel "ShipmentCollectionSap_c1" 
+		after the completion of migration 
+-------------------------------------------------------------		

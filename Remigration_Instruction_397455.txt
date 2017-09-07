@@ -1,0 +1,44 @@
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD
+STEP 1 - Please enable security properties loader for topology ( imdmsvc_3802 , imdmcol_3801) (To be done by platform team)
+STEP 2 - Please copy the keystore in for topology (imdmsvc_3802 , imdmcol_3801) (To be done by Platform Team )
+STEP 3 - Property Migration
+STEP 4 - customer-producer-imap.war and customer-consumer-emcsfdc.war to be migrated
+
+
+Migration Instructions :
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by platform team)
+Environment: PROD
+Topology : 	 imdmsvc_3802 , imdmcol_3801
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in imdmsvc_3802 and imdmcol_3801 instances 
+--------------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-consumer-emcsfdc-R3
+Version: 1
+---------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name: customer-producer-imap (Already migrated through WR#386083, please ensure. Ignore this step)
+Snap-shot:  3-SNAPSHOT               
+Project:    es
+Migration type : warselective
+--------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name: customer-consumer-emcsfdc
+Snap-shot:  3-SNAPSHOT                                     
+Project:    es
+Migration type : warselective
+-----------------------------------------

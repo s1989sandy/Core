@@ -1,0 +1,66 @@
+Special Instructions
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD.
+STEP1 : Please enable security properties loader for topology sapsvc_2030 and  webmet_2051 (To be done by Platform Team )
+STEP2 : Please copy the secure keystore in sapsvc_2030 and webmet_2051 instances (To be done by Platform Team )
+STEP3 : DB Scripts Migration
+STEP4 : salesorder-producer-sap.war and salesorder-consumer-wm.war to be migrated
+
+
+
+Migration Instructions 
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD
+Topology : sapsvc_2030 , webmet_2051
+Enable security properties loader for the above instance
+----------------------------------------------------------------------------
+STEP2: SECURE KEYSTORE COPY : (To be done by Platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in sapsvc_2030 and webmet_2051 instances  
+-----------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : salesorder-producer-sap-R3 (Already migrated through WR 386119; Please ensure)
+Version : 1, 2, 3
+----------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name :  salesorder-distribution-R3
+Version : 1,2,3,4,5,6
+--------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : dev/env-specific-updates-cicadm.xml 
+Group Name : salesorder-distribution-R3-updates
+Version : 1
+<Group Project="salesorder-distribution-R3-updates">
+	<Scripts Version="1">
+	  <Script Type="DML">Update CICADM.PROPERTY set value ='/sst/runtime.asvc/com.actional.intermediary.erpSalesOrderService' where id =67302</Script> 
+</Scripts>
+</Group>
+-------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:     salesorder-producer-sap (Already deployed through WR 386119; Please ensure)
+Snapshot :	3-SNAPSHOT                              
+Project:   rel1
+Migration type : warselective
+------------------------------------------------------------
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:     salesorder-consumer-wm
+Snapshot :	3-SNAPSHOT                                
+Project:  rel1
+Migration type : warselective 

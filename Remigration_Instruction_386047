@@ -1,0 +1,119 @@
+Special Instructions: 
+--------------------------------------------------- 
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment 
+Step 1: DB Scripts Migration 
+Step 2: Gemfire Refresh
+Step 3: cic-common-3-SNAPSHOT.jar ,boe-batch-edge-crm.jar to be migrated 
+
+
+Migration Instructions: 
+------------------------------------------------------------ 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-qto-batch-edge-crm-ftp 
+Version : 1 
+---------------------------------------------------- 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-qto-batch-edge-crm-mv 
+Version : 1 
+---------------------------------------------------- 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-fsar-batch-edge-crm-ftp 
+Version : 1 
+---------------------------------------------------- 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-fsar-batch-edge-crm-mv 
+Version : 1
+---------------------------------------------------- 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-cr-batch-edge-crm-ftp 
+Version : 1 
+---------------------------------------------------- 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-cr-batch-edge-crm-mv 
+Version : 1 
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : boe-batch-edge-crm 
+Version :1,2,3,4
+-------------------------------
+------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+File Path: dev/env-specific-updates-cicadm.xml 
+Groupname: boe-cr-batch-edge-crm-ftp-updates 
+<Group Project="boe-cr-batch-edge-crm-ftp-updates"> 
+<Scripts Version="1"> 
+<Script Type="DML">Update CICADM.PROPERTY set value ='aicr3boesf1' where id =52285 and key='ftp.user.name'</Script> 
+</Scripts> 
+</Group> 
+---------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+File Path: dev/env-specific-updates-cicadm.xml 
+Groupname: boe-fsar-batch-edge-crm-ftp-updates 
+<Group Project="boe-fsar-batch-edge-crm-ftp-updates"> 
+<Scripts Version="1"> 
+<Script Type="DML">Update CICADM.PROPERTY set value ='aicr3boesf1' where id =51926 and key='ftp.user.name' </Script> 
+</Scripts> 
+</Group> 
+---------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+File Path: dev/env-specific-updates-cicadm.xml 
+Groupname:boe-qto-batch-edge-crm-ftp-updates 
+<Group Project="boe-qto-batch-edge-crm-ftp-updates"> 
+<Scripts Version="1"> 
+<Script Type="DML">Update CICADM.PROPERTY set value ='aicr3boesf1' where id =51805 and key='ftp.user.name'</Script> 
+</Scripts> 
+</Group> 
+
+-----------------------------------------------------------
+Gemfire refresh
+Scehma: CICTRANS
+A new row is inserted in CIC_EMAIL_NTF and CIC_COMMON_LOOKUP table schema. 
+Gemfire : EMAIL_NOTIFICATION and COMMON_LOOKUP
+Please refresh and confirm that newly inserted record is available in both the tables. 
+Record :  boe-batch-edge-crm as a key for both the tables
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+BATCH (jar) Migration: 
+Type: Puppet 
+Source Environment: PRF 
+Target Environment: PROD  
+Component Name: boe-batch-edge-crm 
+Target Path: sourcecode 
+Sanpshot: 3-SNAPSHOT
+
+
+COMPONENT DEPLOYMENT: 
+BATCH (jar) Migration: 
+Type: Puppet 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name: cic-common 
+Target Path: sourcecode/lib/
+Sanpshot: 3-SNAPSHOT

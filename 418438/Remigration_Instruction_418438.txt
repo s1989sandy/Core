@@ -1,0 +1,56 @@
+
+Special Instructions
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment
+STEP 1 : Please enable security properties loader for topology fsfdcsvc_3100 (To be done by Platform Team )
+STEP 2 : Please copy the secure keystore in fsfdcsvc_3100 instances (To be done by Platform Team)
+STEP 3 - Properties Migration
+STEP 4 - Component Deployment - opportunity-webservice-federalsfdc.war to be migrated
+STEP 5 : Actional URL creation (Platform team task)
+
+
+
+Migration Instructions :
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD 
+Topology : fsfdcsvc_3100
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in fsfdcsvc_3100 instances
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : opportunity-webservice-federalsfdc
+Version: 1,2,3
+-------------------------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:    	opportunity-webservice-federalsfdc
+Snap-shot:       	3-SNAPSHOT               
+Project:            rel3
+Migration type :    warselective
+------------------------------------------------------------
+Actional URL creation - Should be done by Platform Team
+
+Actional Creation/Refresh: Creation
+Environment: PROD
+Internal/External : Internal
+Appication Contract : aic_rest_user
+WSDL URL/ WADL : 
+ 
+Note: This is Rest Service.
+
+Please find the attached wadl files.
+
+http://intintprp33.isus.emc.com:3100/opportunity-webservice-federalsfdc/opportunitysearch/getOpportunities/
+http://intintprp34.isus.emc.com:3100/opportunity-webservice-federalsfdc/opportunitysearch/getOpportunities/                                                       
+
+

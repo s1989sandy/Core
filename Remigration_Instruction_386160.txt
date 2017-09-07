@@ -1,0 +1,39 @@
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+
+STEP 1 - Properties Migration
+STEP 2 - Component Deployment - contract-webservice-cmc.war to be migrated
+STEP 3 - Actional URL Creation - Should be done by Platform Team
+
+
+-----------------------------
+STEP 1: DB PROPERTY MIGRATION: 
+Environment   : PROD
+Schema        : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name    : contract-webservice-cmc
+Version       : 1,2
+
+----------------------------
+STEP 2 : COMPONENT MIGRATION 
+Type : Puppet 
+Source Environment : PRF
+Target Environment : PROD
+Deploy unit : WAR 
+Componnet Type : Web-Service 
+Component Name : contract-webservice-cmc
+Snap-shot : 3-SNAPSHOT
+Project : es 
+AIC Component : Yes 
+---------------------------------
+Actional Creation/Refresh: Creation
+Environment: PROD
+Internal/External : Internal
+Application contract: aicuser
+WSDL URL/ WADL :
+
+http://intintprp21.isus.emc.com:3032/contract-webservice-cmc/contractlookupws.wsdl
+http://intintprp22.isus.emc.com:3032/contract-webservice-cmc/contractlookupws.wsdl
+
+Please validate whether the above URL's are working or not. Then create the actional URL .
+------------------------------------------------------------

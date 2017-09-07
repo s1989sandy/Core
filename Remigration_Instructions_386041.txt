@@ -1,0 +1,49 @@
+Special Instructions:
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD - R3 Cycle Testing Environment
+STEP1:Please enable security properties loader for topology sapsvc_2030 (To be done by Platform Team )
+STEP2:Please copy the secure keystore in sapsvc_2030 instances (To be done by Platform Team )
+STEP3: DBProperty Migration
+STEP4: purchaseorder-producer-sap.war and purchaseorder-consumer-elms.war to be migrated
+
+Remigration Instructions:
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD 
+Topology : sapsvc_2030
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by by Platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in sapsvc_2030 instances  
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : purchaseorder.collection.sap-R3
+Version : 1,2,3
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : purchaseorder-consumer-elms
+Version : 6,7 
+------------------------------------------------------------ 
+COMPONENT DEPLOYMENT: 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name : purchaseorder-producer-sap 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective 
+------------------------------------------------------------ 
+COMPONENT DEPLOYMENT: 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name : purchaseorder-consumer-elms 
+Snapshot : 3-SNAPSHOT 
+Project: rel1 
+Migration type : warselective

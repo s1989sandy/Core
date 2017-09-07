@@ -1,0 +1,18 @@
+Special Instructions: 
+--------------------------------------------------- 
+Note:Component migration is from PRF to PROD  
+
+STEP 1 -  DB Scripts Migration 
+
+
+Migration Instructions: 
+
+Step 1:
+------------------------------------------------------------ 
+DB PROPERTY MIGRATION: 
+Environment : PROD 
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : salescredit-batch-ecc-callidus 
+Version : 1,2
+------------------------------------------------------------

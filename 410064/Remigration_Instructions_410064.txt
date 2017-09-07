@@ -1,0 +1,335 @@
+Special Instruction:
+Component migration is from PRF to PROD
+------------------------------------------
+STEP 1: Properties Migration.
+STEP 2: Component Deployment.
+STEP 3: Actional URL creation -Should be done by Platform Team
+
+
+STEP 1 : PROPERTY MIGRATION
+=================================
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : common-b2b-placeholders
+Version: 1
+
+----------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File :env-specific-updates-cicadm.xml
+<Group Project="common-b2b-placeholders-updates">
+	 <Scripts Version="1">
+	    <Script Type="DML">UPDATE CICADM.PROPERTY SET value='sst/runtime.asvc/com.actional.intermediary.cic{0}B2bmapService/transform' where id=62848</Script>
+	 </Scripts>
+</Group>
+-------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-arrow
+Version: 1,2
+-------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-arrow-ecs-rsa
+Version: 1,2
+------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-arrow-rsa
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name :b2bmap-webservice-avnet
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-avnetemea
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-ericsson
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-forsythe
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-magirus
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-computerlinks-rsa
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-expressdata-rsa
+Version: 1,2
+
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-ingram-micro-rsa
+Version: 1,2
+-------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : b2bmap-webservice-wwt 
+Version: 1,2
+
+=============================================================
+
+STEP 2: Component Deployment
+-------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-arrow
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-arrow-ecs-rsa  
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-arrow-rsa
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-avnet
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-avnetemea
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-ericsson
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-forsythe
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-magirus
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-computerlinks-rsa
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-expressdata-rsa
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name:  b2bmap-webservice-ingram-micro-rsa
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective
+
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name: b2bmap-webservice-wwt 
+Snap-shot: 3-SNAPSHOT 
+Project: rel3 
+Migration type : warselective 
+====================================================
+STEP 3 :
+
+------------------------- 
+Actional Creation/Refresh:  creation 
+Environment: PROD
+Internal/External : Internal 
+Application contract: aicrestuser
+WSDL URL/ WADL :
+
+Note: This is Rest Service.
+
+Please find the wadls in the attached PRF_B2BRestWebServices_WADLs.zip file.
+
+
+1)      b2bmap-webservice-arrow
+
+			http://intintprp37.isus.emc.com:3300/b2bmap-webservice-arrow/
+			http://intintprp38.isus.emc.com:3300/b2bmap-webservice-arrow/ 
+
+
+2)       b2bmap-webservice-arrow-ecs-rsa 
+	
+			http://intintprp37.isus.emc.com:3300/b2bmap-webservice-arrow-ecs-rsa/
+			http://intintprp38.isus.emc.com:3300/b2bmap-webservice-arrow-ecs-rsa/
+				
+			
+
+3)       b2bmap-webservice-arrow-rsa 
+
+			http://intintprp37.isus.emc.com:3300/b2bmap-webservice-arrow-rsa/
+			http://intintprp38.isus.emc.com:3300/b2bmap-webservice-arrow-rsa/
+			
+			
+
+4)       b2bmap-webservice-avnet 
+
+			http://intintprp37.isus.emc.com:3300/b2bmap-webservice-avnet/
+			http://intintprp38.isus.emc.com:3300/b2bmap-webservice-avnet/
+			
+			
+5)       b2bmap-webservice-avnetemea 
+
+			http://intintprp37.isus.emc.com:3301/b2bmap-webservice-avnetemea/
+			http://intintprp38.isus.emc.com:3301/b2bmap-webservice-avnetemea/
+			
+			
+
+6)       b2bmap-webservice-ericsson  	
+			
+			http://intintprp37.isus.emc.com:3301/b2bmap-webservice-ericsson/
+			http://intintprp38.isus.emc.com:3301/b2bmap-webservice-ericsson/
+			
+			
+
+7)       b2bmap-webservice-forsythe
+
+			http://intintprp37.isus.emc.com:3301/b2bmap-webservice-forsythe/
+			http://intintprp38.isus.emc.com:3301/b2bmap-webservice-forsythe/
+			
+		   
+
+8) 		b2bmap-webservice-magirus 
+
+			http://intintprp37.isus.emc.com:3301/b2bmap-webservice-magirus/
+			http://intintprp38.isus.emc.com:3301/b2bmap-webservice-magirus/ 
+		
+		
+		
+9)		b2bmap-webservice-expressdata-rsa
+
+			http://intintprp37.isus.emc.com:3302/b2bmap-webservice-expressdata-rsa/
+			http://intintprp38.isus.emc.com:3302/b2bmap-webservice-expressdata-rsa/
+
+			
+			
+10)		b2bmap-webservice-computerlinks-rsa
+
+			http://intintprp37.isus.emc.com:3302/b2bmap-webservice-computerlinks-rsa/
+			http://intintprp38.isus.emc.com:3302/b2bmap-webservice-computerlinks-rsa/
+
+			
+			
+11)		b2bmap-webservice-ingram-micro-rsa
+		
+			http://intintprp37.isus.emc.com:3302/b2bmap-webservice-ingram-micro-rsa/
+			http://intintprp38.isus.emc.com:3302/b2bmap-webservice-ingram-micro-rsa/
+			
+12)		b2bmap-webservice-wwt
+		
+			http://intintprp37.isus.emc.com:3302/b2bmap-webservice-wwt/
+			http://intintprp38.isus.emc.com:3302/b2bmap-webservice-wwt/
+			
+Note : Please verify the above URL's are working or not. Then create actional URL for this - Should be done by Platform Team.

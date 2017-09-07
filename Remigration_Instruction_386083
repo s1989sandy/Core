@@ -1,0 +1,108 @@
+Special Instructions :
+-----------------------
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment
+customer-producer-imap.war ,customer-consumer-crm.war  to be migrated
+
+STEP1 : Please enable security properties loader for topology (imdmsvc_3802 , crmdis_3030) (To be done by Platform Team )
+STEP2 : Please copy the secure keystore in imdmsvc_3802 and crmdis_3030 instances (To be done by Platform Team)
+STEP3 : JNDI CREATION  - (To be done by Platform Team )
+STEP4 : Properties Migration 
+STEP5 : Gemfire refresh
+STEP6 :  please bind the Queue (AIC.D.CUSTOMER.CRM.Q)with Exchange (AIC.D.CUSTOMER.IMAP.FO.EXG)
+STEP7 : Component Deployment
+STEP8 : Turning on the channel "CustomerCollectionIMap_c" after component migration and in touch with DEV team
+
+Migration Instructions :
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD
+Topology : imdmsvc_3802 , crmdis_3030
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in imdmsvc_3802 and crmdis_3030 instances
+-----------------------------------------------------------------------------
+imap JNDI CREATION: (To be done by Platform Team)
+JNDI NAME : jdbc/imap 
+Note : please create the JNDI configuration only if it is not created earlier.
+Topology : crmdis_3030
+Environment : PROD
+Note: Please configure this in component specific instances.
+-----------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-producer-imap
+Version: 1, 2, 3
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-consumer-crm
+Version: 1, 2, 3, 4, 5 , 6
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-batch-imap-crm-ftpd
+Version: 1
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : CustomerCollectionIMap_c
+Version: 1, 2, 3, 4
+Note : Please turn off the channel in Event notifier "CustomerCollectionIMap_c"; Once the migration and conversion are completed, enable back 	with confirmation from DEV team.
+-----------------------------------------------------------
+
+Environment   : PROD
+Schema        : CICADM
+File Path     : dev/env-specific-updates-cicadm.xml 
+Group Name    : customer-batch-imap-crm-ftpd-updates
+
+<Group Project="customer-batch-imap-crm-ftpd-updates">
+	<Scripts Version="1">
+		<Script Type="DML">UPDATE CICADM.PROPERTY SET VALUE='aicr3mapcussf1' WHERE ID=49037 AND KEY='ftp.user.name'</Script> 
+	</Scripts>
+</Group> 
+
+ 
+Gemfire refresh
+Scehma: CICTRANS
+A new row is inserted in CIC_EMAIL_NTF and CIC_COMMON_LOOKUP table schema.
+GemFire : EMAIL_NOTIFICATION and COMMON_LOOKUP 
+Please refresh and confirm that newly inserted record is available in both the tables. 
+Record :  customer-consumer-crm as a key for both the tables
+-----------------------------------------------------------------------------
+STEP 6: QUEUE BINDING
+Queue Name: AIC.D.CUSTOMER.CRM.Q
+Exchange Name: AIC.D.CUSTOMER.IMAP.FO.EXG
+--------------------------------------------------------------------------------
+STEP 7:
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:     customer-producer-imap
+Snap-shot:  3-SNAPSHOT               
+Project:  es
+Migration type : warselective
+--------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:  customer-consumer-crm
+Snap-shot:  3-SNAPSHOT                                     
+Project:   rel3
+Migration type : warselective
+---------------------------------------------
+STEP 8: Touch base with DEV team for Tuning on the channel "CustomerCollectionIMap_c" after the completion of migration
+

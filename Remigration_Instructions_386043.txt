@@ -1,0 +1,78 @@
+Please deploy the components as Remigration Instructions:
+Note: Component migration is from PRF to PROD – R3 Cycle Testing Environment
+STEP 1 - Please enable security properties loader for topology (  websvc_3003,  crmdis_3030 ) (To be done by Platform Team )
+STEP 2 - Please copy the secure keystore in   websvc_3003,  crmdis_3030 instances (To be done by Platform Team)
+STEP 3 - Properties Migration
+STEP 4 - Component Deployment - salesorder-webservice-aic.war and salesorder-consumer-crm.war to be migrated
+STEP 5 - Gemfire refresh
+STEP 6 - Actional URL Creation - Should be done by Platform Team
+
+
+Migration Instructions 
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD 
+Topology : 	 websvc_3003,  crmdis_3030
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in  websvc_3003 and   crmdis_3030 instances
+--------------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : salesorder-webservice-aic 
+Version:1,2,3
+--------------------------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : salesorder-consumer-crm
+Version:1,2,3,4,5
+--------------------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(WAR): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Deployment Type : Deployment 
+Component Name : salesorder-webservice-aic 
+Snapshot : 3-SNAPSHOT                                
+Project: rel3
+Migration type : warselective
+--------------------------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(WAR): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Deployment Type : Deployment 
+Component Name : salesorder-consumer-crm
+Snapshot :	3-SNAPSHOT                                
+Project:  rel3
+Migration type : warselective
+--------------------------------------------------------------------------------
+Gemfire refresh
+Scehma: CICTRANS
+A new row is inserted in CIC_EMAIL_NTF table schema.
+GemFire : EMAIL_NOTIFICATION 
+Please refresh and confirm that newly inserted record is available in the table. 
+Record :  salesorder-consumer-crm as a key for the table
+--------------------------------------------------------------------------------
+Actional Creation/Refresh: Creation
+Environment: PROD
+Internal/External : Internal
+Application contract: aicuser
+WSDL URL/ WADL : WSDL
+
+http://intintprp25.isus.emc.com:3003/salesorder-webservice-aic/salesorderb2b.wsdl
+http://intintprp26.isus.emc.com:3003/salesorder-webservice-aic/salesorderb2b.wsdl
+
+	
+User Creation details:  Please validate whether the above URL's are working or not. Then create the actional URL .
+
+
+
+
+

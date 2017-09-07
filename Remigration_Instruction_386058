@@ -1,0 +1,56 @@
+Special Instructions
+
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+STEP 1 : Please enable security properties loader for topology  websvc_3003 ( To be done by Platform Team )
+STEP 2 : Please copy the secure keystore in  websvc_3003 instances (To be done by Platform Team)
+STEP 3 : Properties Migration
+STEP 4 : Rabbit MQ creation
+STEP 5 : Component Deployment - quotestatus-webservice-b2b.war to be migrated.
+STEP 6 : Actional URL creation -Should be done by Platform Team
+
+
+Migration Instruction
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD  
+Topology :    websvc_3003
+Enable security properties loader for the above instance
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in  websvc_3003 instance
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : quotestatus-webservice-b2b
+Version: 1
+------------------------------------------------------------
+RabbitMQ Infrastructure:
+Operation : create
+Environment : PROD 
+RabbitMQ Script File : propelrelease3\common\rabbit\aic-rabbitmq-migration-util\common\rabbitMqScripts_R3.xml
+Group Name : quotestatus-webservice-b2b
+------------------------------------------------------------
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:    	quotestatus-webservice-b2b
+Snap-shot:       	3-SNAPSHOT               
+Project:            rel3
+Migration type :    warselective
+------------------------------------------------------------
+Actional Creation/Refresh: 
+Environment: PROD
+Internal/External : Internal
+Application contract: aicuser
+WSDL URL/ WADL :
+
+http://intintprp25.isus.emc.com:3003/quotestatus-webservice-b2b/quotestatus.wsdl
+http://intintprp26.isus.emc.com:3003/quotestatus-webservice-b2b/quotestatus.wsdl
+
+Note: Please verify the above URL's are working or not. Then create actional URL for this - Should be done by Platform Team.

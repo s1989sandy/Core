@@ -1,0 +1,51 @@
+Special Instructions
+
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD - R3 Cycle Testing Environment
+STEP1 : Properties Migration
+STEP2 : Component Deployment - customer-webservice-imap.war to be migrated
+STEP3 : Actional URL creation -Should be done by Platform Team
+STEP4 : Create the new user HYBRIS : aichybrisuser for this PERF Actional similar to PRF and  Configure the user to access only SearchHub and CustomerAutoCreate operations. Please refresh the actional as well.
+
+Migration Instruction
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-webservice-imap
+Version: 10,11,12
+---------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : customer-webservice-imap-r3
+Version: 1,2,3,4,5,6,7,8
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:  customer-webservice-imap 
+Snap-shot: 3-SNAPSHOT  
+Project : es             
+Migration type : warselective
+------------------------------------------------------------
+Actional Creation/Refresh: 
+Environment: PROD
+Internal/External : Internal
+WSDL URL/ WADL :WSDL
+Application Contract : aicmdmuser
+
+http://intintprp47.isus.emc.com:3802/customer-webservice-imap/customerimapservice.wsdl
+http://intintprp48.isus.emc.com:3802/customer-webservice-imap/customerimapservice.wsdl
+
+Note: Please verify the above URL's are working or not. Then create actional URL for this - Should be done by Platform Team.
+
+-------------------------------------------------------------------------
+Create the new user for HYBRIS : 'aichybrisuser' for the PERF actional similar to PRF. Configure the user to access only SearchHub and CustomerAutoCreate operations. Please refresh the actional as well.
+HYBRIS USER:  To be done by Platform team
+Username: aichybrisuser
+Operations : SearchHub and CustomerAutoCreate
+Environment: PROD

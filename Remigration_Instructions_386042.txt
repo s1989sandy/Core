@@ -1,0 +1,28 @@
+Special Instructions
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment
+Step1: purchaseorder-producer-sap.war and purchaseorder-consumer-tradesphere.war to be migrated
+
+
+Remigration Instructions
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name : purchaseorder-producer-sap(Already deployed through WR 386041; Please ensure- Ignore this)
+Snapshot : 3-SNAPSHOT 
+Project : rel1 
+Migration type : warselective
+
+------------------------------------------------------------
+
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD
+Component Name : purchaseorder-consumer-tradesphere 
+Snapshot : 3-SNAPSHOT 
+Project : rel1 
+Migration type : warselective

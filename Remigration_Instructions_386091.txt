@@ -1,0 +1,82 @@
+Special Instructions
+--------------------------------------------------------
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD – R3 Cycle Testing Environment
+STEP 1 - Please enable security properties loader for topology ( rsfdcws_3020,p2psvc_3103) (To be done by Platform Team)
+STEP 2 - Please copy the secure keystore in  rsfdcws_3020,p2psvc_3103 instances (To be done by Platform Team)
+STEP 3 - Properties Migration
+STEP 4 - Component Deployment
+STEP 5 - Gemfire Refresh 
+STEP 6 - Actional URL Creation - Should be done by Platform Team
+
+Migration Instructions:
+
+STEP 1: 
+----------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done by Platform Team )
+Environment: PROD 
+Topology : p2psvc_3103,rsfdcws_3020
+Enable security properties loader for the above instance
+-------------------------
+STEP 2:
+----------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in rsfdcws_3020,p2psvc_3103 instances
+--------------------------
+STEP 3 :
+-------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : matchservice-p2p-rsa-imap
+Version: 1,2,3,4
+-------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : notifysearch-webservice-rsasfdc 
+Version: 1,2
+--------------------------
+STEP 4 :
+---------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:     notifysearch-webservice-rsasfdc
+Snap-shot:          3-SNAPSHOT               
+Project:            rel3
+Migration type :    warselective
+----------------------------------------
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name:     matchservice-p2p-rsa-imap
+Snap-shot:          3-SNAPSHOT               
+Project:            rel3
+Migration type :    warselective
+----------------------------------------
+
+Step 5 : Gemfire refresh
+Scehma: CICTRANS
+A new row is inserted in CIC_EMAIL_NTF  table schema.
+GemFire : EMAIL_NOTIFICATION  
+Please refresh and confirm that newly inserted record is available in both the tables. 
+Record :  matchservice-p2p-rsa-imap as a key for both the tables
+
+
+STEP 6:
+Actional Creation/Refresh: Creation
+Environment: PROD
+Internal/External : Internal and External
+Application Contract : aicuser
+WSDL URL/ WADL : WSDL
+
+http://intintprp29.isus.emc.com:3020/notifysearch-webservice-rsasfdc/search.wsdl
+http://intintprp30.isus.emc.com:3020/notifysearch-webservice-rsasfdc/search.wsdl
+
+Note: Please verify the above URL's are working or not. Then create actional URL for this - Should be done by Platform Team.
+

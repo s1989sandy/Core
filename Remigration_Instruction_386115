@@ -1,0 +1,17 @@
+Special Instructions
+-----------------------
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+
+STEP1: installbase-batch-sap-ibase.jar to be migrated
+
+Migration Instructions 
+------------------------------------------------ 
+COMPONENT DEPLOYMENT: 
+BATCH (jar) Migration: 
+Type: Puppet 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name: installbase-batch-sap-ibase 
+Target Path: sourcecode 
+Sanpshot: 2-SNAPSHOT 

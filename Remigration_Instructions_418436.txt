@@ -1,0 +1,85 @@
+Special Instructions:
+-------------------------------------------------------------
+Please deploy the components as per the Remigration Instructions.
+Note:Component migration is from PRF to PROD 
+STEP 1 : Please enable security properties loader for topology orasfdcws_3700 and  crmp2p_3012 ( To be done by Platform Team )
+STEP 2 : Please copy the secure keystore in orasfdcws_3700 and   crmp2p_3012  instances (To be done by Platform Team)
+STEP 3 : Properties Migration
+STEP 4 : Queue creation
+STEP 5 : Gemfire Refresh
+STEP 5 : Component Deployment - notifydealreg-webservice-federalsfdc.war, dealreg-p2p-federalsfdc-crm.war
+STEP 6 : Actional URL creation both internal and external -Should be done by Platform Team
+
+
+Migration Instructions
+------------------------------------------------------------
+SECURE PROPERTY LOADER SETUP: (To be done Middleware Team )
+Environment:  PROD
+Topology : orasfdcws_3700 and  crmp2p_3012
+Enable security properties loader for the above instance
+
+------------------------------------------------------------
+SECURE KEYSTORE COPY : (To be done by platform team)
+Environment : PROD
+Please copy the encryptprops.keystore in orasfdcws_3700 and  crmp2p_3012 instances
+
+------------------------------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : notifydealreg-webservice-federalsfdc
+Version: 1,2
+------------------------------------------------------------
+
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : dealreg-p2p-federalsfdc-crm
+Version: 1,2
+
+------------------------------------------------------------
+
+RabbitMQ Infrastructure (Queue Creation):
+Operation : create
+Environment : PROD
+RabbitMQ Script File : common/rabbitMqScripts_R3.xml 
+Group Names : dealreg-p2p-federalsfdc-crm
+ 
+------------------------------------------------------------
+Gemfire refresh
+Scehma: CICTRANS
+Environment : PROD
+A new row is inserted in CIC_EMAIL_NTF table schema.
+GemFire : EMAIL_NOTIFICATION 
+Please refresh and confirm that newly inserted record avialable in table.
+Record :  dealreg-p2p-federalsfdc-crm as a key for both the tables
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name: notifydealreg-webservice-federalsfdc
+Snap-shot: 3-SNAPSHOT               
+Project : es
+Migration type : warselective
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED]
+Source Environment: PRF
+Target Environment: PROD
+Component Name: dealreg-p2p-federalsfdc-crm 
+Snap-shot:  	3-SNAPSHOT               
+Project  :  rel3
+Migration type :    warselective
+------------------------------------------------------------
+1.Actional Creation/Refresh: (To be done by Platform Team)
+Environment: PROD
+Internal and External URL
+Application contract: aicuser
+WSDL URL/ WADL :
+http://intintprp45.isus.emc.com:3700/notifydealreg-webservice-federalsfdc/dealreg.wsdl
+http://intintprp46.isus.emc.com:3700/notifydealreg-webservice-federalsfdc/dealreg.wsdl
+
+-------------------------------------------------------------

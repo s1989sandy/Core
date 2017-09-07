@@ -1,0 +1,70 @@
+Special Instructions:
+
+Please deploy the components per the Remigration Instructions.
+Note:Component migration is from PRF to PROD
+	
+STEP1 : Please enable security properties loader for topology (webmet_2050) (To be done by platform Team)
+STEP2 : Please copy the secure keystore in webmet_2050  (To be done by platform Team )
+STEP3 : DB PROPERTY MIGRATION
+Step4 : purchaseorder-producer-sap and purchaseorder-consumer-supplynet.war to be migrated.
+
+
+Migration Instructions 
+------------------------------------------------------------
+STEP 1: SECURE PROPERTY LOADER SETUP: (To be done by platform Team)
+Environment: PROD
+Topology : webmet_2050
+Enable security properties loader for the above instance
+---------------------------------------------------------------------------
+STEP2: SECURE KEYSTORE COPY : (To be done by platform Team)
+Environment:PROD
+Please copy the encryptprops.keystore in webmet_2050 instances  
+---------------------------------------------------------------------------
+STEP3 : DB PROPERTY MIGRATION: 
+
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shared-webmethods-ws 
+Version: 1,2
+-------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : shared-webmethods-p2-ws 
+Version:1 
+----------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : purchaseorder-consumer-supplynet-R3 
+Version:1 
+----------------------------------------
+DB PROPERTY MIGRATION: 
+Environment : PROD
+Schema : CICADM 
+DBScript File : common/db-scripts-cicadm.xml 
+Group Name : purchaseorder-consumer-supplynet 
+Version: 7, 8 ,9
+----------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(war): [PUPPETIZED] 
+Source Environment: PRF 
+Target Environment: PROD 
+Component Name : purchaseorder-producer-sap(Already deployed through WR 386041; Please ensure- Ignore this)
+Snapshot : 3-SNAPSHOT 
+Project : rel1 
+Migration type : warselective
+------------------------------------------------------------
+COMPONENT DEPLOYMENT: 
+Components Migration(WAR): 
+Source Environment: PRF
+Target Environment: PROD
+Deployment Type : Deployment 
+Component Name : purchaseorder-consumer-supplynet
+Snapshot :	2-SNAPSHOT                                
+Project:  rel1
+Migration type : warselective
+----------------------------------------

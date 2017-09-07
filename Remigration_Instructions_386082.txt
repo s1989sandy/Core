@@ -1,0 +1,12 @@
+Step 1: COMPONENT DEPLOYMENT 
+
+Migration Instructions 
+------------------------------------------------ 
+COMPONENT DEPLOYMENT: 
+BATCH (jar) Migration: 
+Type: Puppet 
+Source Environment: PRF 
+Target Environment: PROD
+Component Name: ftp-upload-download-service
+Target Path: sourcecode 
+Sanpshot: 2-SNAPSHOT 
